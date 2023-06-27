@@ -100,7 +100,7 @@ def runtimeTest(name):
 def loadUnitTests(name):
     tests = {}
     with open(f'./{name}.test', 'r') as file:
-        tests = {test.split(SEP)[0] : {'pred': test.split(SEP)[1], 'real': None, 'pass': False} for test in file.read().split('\n')}
+        tests = {test.split(SEP)[0] : {'pred': test.split(SEP)[1], 'real': None, 'pass': False} for test in file.read().split(';')}
     file.close()
     return tests
 
@@ -162,7 +162,7 @@ if __name__ == '__main__':
         print("|STYLE TEST STAGE|")
         print("'----------------'")
         for file in files:
-            print(f'==+> style testing {file}.c <===')
+            print(f'===> style testing {file}.c <===')
             res = styleTest(file)
             print(res.stdout)
     # runtimeTest
